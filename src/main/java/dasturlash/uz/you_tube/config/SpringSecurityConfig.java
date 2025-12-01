@@ -27,19 +27,7 @@ public class SpringSecurityConfig {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public static final String[] AUTH_WHITELIST = {
-            "/api/v1/auth/**",
-            "/api/v1/*/lang",
-            "/api/v1/article/section/**",
-            "/api/v1/article/category/*",
-            "/api/v1/article/region/*",
-            "/api/v1/article/last12",
-            "/api/v1/article/get/*",
-            "/api/v1/article/view_top4",
-            "/api/v1/article/increase/**",
-            "/api/v1/article/tagName/*",
-            "/api/v1/article/user/filter",
-            "/api/v1/attach/**",
-            "/api/v1/currency/**"
+            "/api/v1/auth/create",
     };
 
     @Bean

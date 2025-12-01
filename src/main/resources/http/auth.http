@@ -1,0 +1,22 @@
+### 1. Registration
+POST http://localhost:8080/api/v1/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Adham",
+  "surname": "Yaxshiboyev",
+  "email": "adham@example.com",
+  "password": "123456"
+}
+
+### 2. Login
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "adham@example.com",
+  "password": "123456"
+}
+
+### 3. Email verification (registration link)
+GET http://localhost:8080/api/v1/auth/registration/email/verification?id=PUT_VERIFICATION_ID_HERE

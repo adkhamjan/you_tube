@@ -1,0 +1,23 @@
+### 1. Create tag (ADMIN required)
+POST http://localhost:8080/api/v1/tag
+Content-Type: application/json
+
+{
+  "name": "Java",
+  "orderNumber": 1
+}
+
+### 2. Update tag (ADMIN required)
+PUT http://localhost:8080/api/v1/tag/1
+Content-Type: application/json
+
+{
+  "name": "Spring Boot",
+  "orderNumber": 2
+}
+
+### 3. Delete tag (ADMIN required)
+DELETE http://localhost:8080/api/v1/tag/1
+
+### 4. Get all tags (ADMIN required)
+GET http://localhost:8080/api/v1/tag/getAll

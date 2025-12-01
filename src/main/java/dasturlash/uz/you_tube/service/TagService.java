@@ -7,11 +7,12 @@ import dasturlash.uz.you_tube.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TagEntityService {
+public class TagService {
     @Autowired
     private TagRepository tagRepository;
 
@@ -44,31 +45,15 @@ public class TagEntityService {
         return convertToDTO(tag);
     }
 
-    public void deleteTagEntity(Long id) {
-        TagEntity tag = tagRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("TagEntity not found with id: " + id));
-        tagRepository.delete(tag);
+    public Boolean delete(Integer id) {
+        return tagRepository.updateVisibleById(id) == 1;
     }
 
-    // Get All TagEntitys (public list)
-    public List<TagDTO> getAllTagEntitys() {
-        return tagRepository.findByVisibleTrue().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
-
-    // Get All TagEntitys (admin list - includes hidden)
-    public List<TagDTO> getAllTagEntitysAdmin() {
-        return tagRepository.findAll().stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-    }
-
-    // Get TagEntity by ID
-    public TagDTO getTagEntityById(Long id) {
-        TagEntity tag = tagRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("TagEntity not found with id: " + id));
-        return convertToDTO(tag);
+    public List<TagDTO> getAllTag() {
+        List<TagEntity> tagEntities = tagRepository.findAll();
+        List<TagDTO> tagDTOs = new ArrayList<>();
+        tagEntities.forEach(tagEntity -> tagDTOs.add(convertToDTO(tagEntity)));
+        return tagDTOs;
     }
 
     private TagDTO convertToDTO(TagEntity tag) {

@@ -1,0 +1,58 @@
+### 1. Create profile (ADMIN required)
+POST http://localhost:8080/api/v1/profile/create
+Content-Type: application/json
+
+{
+  "name": "Adham",
+  "surname": "Yaxshiboyev",
+  "email": "adham@example.com",
+  "password": "123456",
+  "role": "USER"
+}
+
+### 2. Change password (current user)
+PUT http://localhost:8080/api/v1/profile/change-password
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+{
+  "oldPassword": "123456",
+  "newPassword": "654321"
+}
+
+### 3. Update email (current user)
+PUT http://localhost:8080/api/v1/profile/update-email
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+{
+  "email": "newmail@example.com"
+}
+
+### 4. Update profile details (current user)
+PUT http://localhost:8080/api/v1/profile/update-detail
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+{
+  "name": "Adhamjon",
+  "surname": "Developer",
+  "birthDate": "2005-05-20",
+  "phone": "+998901234567"
+}
+
+### 5. Update profile photo (Multipart)
+PUT http://localhost:8080/api/v1/profile/update-photo
+Authorization: Bearer {{user_token}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="photo.jpg"
+Content-Type: image/jpeg
+
+< ./photo.jpg
+--WebAppBoundary--
+
+### 6. Get profile details (current user)
+GET http://localhost:8080/api/v1/profile/detail
+Authorization: Bearer {{user_token}}
