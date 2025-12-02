@@ -27,8 +27,8 @@ public class SpringSecurityConfig {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public static final String[] AUTH_WHITELIST = {
-            "/api/v1/auth/create",
-            "/api/v1/attach/**",
+            "/api/v1/auth/**",
+            "/api/v1/attach/**"
     };
 
     @Bean

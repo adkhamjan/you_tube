@@ -6,6 +6,7 @@ import dasturlash.uz.you_tube.entity.ProfileEntity;
 import dasturlash.uz.you_tube.enums.ProfileStatus;
 import dasturlash.uz.you_tube.exp.AppBadRequestException;
 import dasturlash.uz.you_tube.repository.ProfileRepository;
+import dasturlash.uz.you_tube.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -121,7 +122,15 @@ public class ProfileService {
     }
 
     private ProfileDTO toDto(ProfileEntity entity) {
-        return null;
+        ProfileDTO dto = new ProfileDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setSurname(entity.getSurname());
+        dto.setPassword(entity.getPassword());
+        dto.setEmail(entity.getEmail());
+        dto.setStatus(entity.getStatus());
+        dto.setJwt(JwtUtil.encode(entity.getEmail(),profileRoleService.getByProfileId(entity.getId())));
+        return dto;
     }
 
     public Optional<ProfileEntity> getProfileById(Integer id) {
