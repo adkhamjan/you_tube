@@ -28,6 +28,7 @@ public class SpringSecurityConfig {
 
     public static final String[] AUTH_WHITELIST = {
             "/api/v1/auth/create",
+            "/api/v1/attach/**",
     };
 
     @Bean
