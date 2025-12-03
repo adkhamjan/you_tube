@@ -12,9 +12,4 @@ public class SpringConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-    @Bean
-    public JavaMailSender getJavaMailSender(){
-        return new  JavaMailSenderImpl();
-    }
 }

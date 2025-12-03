@@ -19,8 +19,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRoYW1qb255YXhzaGlib3lldkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2NjIyNDYsImV4cCI6MTc2NTA5NDI0Nn0.RVinJSVIQ7-2zmS-HhNAAtP1SshgGkRvA2kCcczcV1RxR1Bmsn-MmOYyacsd3rXlVVDKvF9Fxc87AE3G10fAKA
 
 {
-  "oldPassword": "123456",
-  "newPassword": "654321"
+  "oldPassword": "12345",
+  "newPassword": "11111"
 }
 
 ### 3. Update email (current user)

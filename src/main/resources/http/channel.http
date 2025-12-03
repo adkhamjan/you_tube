@@ -1,0 +1,62 @@
+### 1. Create Channel (USER)
+POST http://localhost:8080/api/v1/channel
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw
+
+{
+  "name": "My Tech Channel",
+  "description": "Channel about technology and programming"
+}
+
+### 2. Update Channel (USER and OWNER)
+PUT http://localhost:8080/api/v1/channel/4465a761-27a6-4f7f-96e8-022611623e47
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw
+
+{
+  "name": "Updated Channel Name",
+  "description": "Updated description for my channel"
+}
+
+### 3. Update Channel Photo (USER and OWNER)
+PUT http://localhost:8080/api/v1/channel/4465a761-27a6-4f7f-96e8-022611623e47/photo
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="photo"; filename="bulut.png"
+Content-Type: image/jpeg
+
+< D:\Downloads\bulut.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 4. Update Channel Banner (USER and OWNER)
+PUT http://localhost:8080/api/v1/channel/{{channelId}}/banner
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="banner"; filename="channel-banner.jpg"
+Content-Type: image/jpeg
+
+< ./path/to/channel-banner.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### 5. Channel Pagination (ADMIN)
+GET http://localhost:8080/api/v1/channel/pagination?page=1&size=10
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY0NzU2ODQ2LCJleHAiOjE3NjUxODg4NDZ9.fATyHYhcSm6ubROSME-I9WWT8VcklgC9hN5lGNRShbNvqQVCEQMhw3WAir74y30I3qSwnEy7wdqXkXXJp8E1LQ
+
+### 6. Get Channel By Id
+GET http://localhost:8080/api/v1/channel/{{channelId}}
+
+### 7. Change Channel Status - ACTIVE (ADMIN, USER and OWNER)
+PUT http://localhost:8080/api/v1/channel/4465a761-27a6-4f7f-96e8-022611623e47/status?status=ACTIVE
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw
+
+### 7b. Change Channel Status - BLOCK (ADMIN, USER and OWNER)
+PUT http://localhost:8080/api/v1/channel/4465a761-27a6-4f7f-96e8-022611623e47/status?status=BLOCK
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNzY0NzU2ODQ2LCJleHAiOjE3NjUxODg4NDZ9.fATyHYhcSm6ubROSME-I9WWT8VcklgC9hN5lGNRShbNvqQVCEQMhw3WAir74y30I3qSwnEy7wdqXkXXJp8E1LQ
+
+### 8. User Channel List (Current User's Channels)
+GET http://localhost:8080/api/v1/channel/my-channels
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NDc1NjQ0MywiZXhwIjoxNzY1MTg4NDQzfQ.RihxDrBRbkbQRjl_-zgnl7FshPr7fdqrUFixDpLBs_7VpDmWI7uKFL7T9IhGhnprtOu1cWIu9Vt4d6TatSL0kw

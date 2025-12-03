@@ -61,7 +61,7 @@ public class AuthService {
     }
 
     public ProfileDTO login(AuthorizationDTO dto) {
-        Optional<ProfileEntity> profileOptional = profileRepository.findByEmailAndVisibleTrue(dto.getUsername());
+        Optional<ProfileEntity> profileOptional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
         if (profileOptional.isEmpty()) {
             throw new ProfileNotFoundException("Phone or password wrong");
         }

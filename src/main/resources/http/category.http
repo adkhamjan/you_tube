@@ -1,15 +1,18 @@
 ### 1. Create category (ADMIN required)
 POST http://localhost:8080/api/v1/category
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRoYW1AZ21haWwuY29tIiwiaWF0IjoxNzY0NzAxNzUwLCJleHAiOjE3NjUxMzM3NTB9.lVqWY_-rbHXlaOjNrRsS3BNCegNraF6CcQQagECN2RvOP0ZLFMIuJATJdQmUJsCr4-K3bYD8w8F8kF3mU_zEeA
 
 {
   "name": "Programming",
+  "categoryKey": "aaaa1",
   "orderNumber": 1
 }
 
 ### 2. Update category (ADMIN required)
 PUT http://localhost:8080/api/v1/category/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRoYW1AZ21haWwuY29tIiwiaWF0IjoxNzY0NzAxNzUwLCJleHAiOjE3NjUxMzM3NTB9.lVqWY_-rbHXlaOjNrRsS3BNCegNraF6CcQQagECN2RvOP0ZLFMIuJATJdQmUJsCr4-K3bYD8w8F8kF3mU_zEeA
 
 {
   "name": "Backend Development",
@@ -18,6 +21,8 @@ Content-Type: application/json
 
 ### 3. Delete category (ADMIN required)
 DELETE http://localhost:8080/api/v1/category/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRoYW1AZ21haWwuY29tIiwiaWF0IjoxNzY0NzAxNzUwLCJleHAiOjE3NjUxMzM3NTB9.lVqWY_-rbHXlaOjNrRsS3BNCegNraF6CcQQagECN2RvOP0ZLFMIuJATJdQmUJsCr4-K3bYD8w8F8kF3mU_zEeA
 
 ### 4. Get category list (PUBLIC)
 GET http://localhost:8080/api/v1/category/list
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwic3ViIjoiYWRoYW1qb255YXhzaGlib3lldkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2NjIyNDYsImV4cCI6MTc2NTA5NDI0Nn0.RVinJSVIQ7-2zmS-HhNAAtP1SshgGkRvA2kCcczcV1RxR1Bmsn-MmOYyacsd3rXlVVDKvF9Fxc87AE3G10fAKA

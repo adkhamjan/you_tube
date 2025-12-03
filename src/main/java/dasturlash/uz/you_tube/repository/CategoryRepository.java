@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CategoryRepository extends CrudRepository<CategoryEntity, Integer> {
     Optional<CategoryEntity> findByName(String name);
 
-    Boolean existsByCategoryKey(String regionKey);
+    Boolean existsByCategoryKeyAndVisibleTrue(String regionKey);
 
     Boolean existsByCategoryKeyAndIdNot(String regionKey, Integer id);
 

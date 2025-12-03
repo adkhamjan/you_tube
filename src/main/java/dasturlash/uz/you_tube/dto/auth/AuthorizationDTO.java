@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class AuthorizationDTO {
     @NotBlank(message = "username required")
-    private String username;
+    private String email;
     @NotBlank(message = "pswd required")
     private String password;
 }

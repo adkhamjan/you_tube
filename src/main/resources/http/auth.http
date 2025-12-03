@@ -3,9 +3,9 @@ POST http://localhost:8080/api/v1/auth/registration
 Content-Type: application/json
 
 {
-  "name": "Ziyo",
-  "surname": "Rashidov",
-  "email": ".com",
+  "name": "Adham",
+  "surname": "Yaxshiboyev",
+  "email": "adhamjonyaxshiboyev@gmail.com",
   "password": "12345"
 }
 
@@ -14,8 +14,8 @@ POST http://localhost:8080/api/v1/auth/login
 Content-Type: application/json
 
 {
-  "email": "adham@example.com",
-  "password": "123456"
+  "email": "admin@gmail.com",
+  "password": "12345"
 }
 
 ### 3. Email verification (registration link)

@@ -18,7 +18,7 @@ public class CategoryService {
 
     public CategoryDTO create(CategoryDTO dto) {
         // checking ...
-        boolean exists = categoryRepository.existsByCategoryKey(dto.getCategoryKey().toLowerCase());
+        boolean exists = categoryRepository.existsByCategoryKeyAndVisibleTrue(dto.getCategoryKey().toLowerCase());
         if (exists) {
             throw new AppBadRequestException("Category key exists: " + dto.getCategoryKey());
         }

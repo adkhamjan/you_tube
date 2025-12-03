@@ -37,7 +37,7 @@ public class ProfileEntity {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private ProfileStatus status = ProfileStatus.ACTIVE;
+    private ProfileStatus status;
     
     @Column(name = "created_date")
     @CreationTimestamp
