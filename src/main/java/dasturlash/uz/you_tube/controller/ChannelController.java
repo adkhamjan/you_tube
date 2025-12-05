@@ -31,21 +31,21 @@ public class ChannelController {
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/{channelId}")
-    public ResponseEntity<ChannelDTO> updateChannel(@PathVariable UUID channelId,
+    public ResponseEntity<ChannelDTO> updateChannel(@PathVariable String channelId,
                                                     @Valid @RequestBody UpdateChannelDTO dto) {
         return ResponseEntity.ok(channelService.updateChannel(channelId, dto));
     }
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/{channelId}/photo")
-    public ResponseEntity<ChannelDTO> updateChannelPhoto(@PathVariable UUID channelId,
+    public ResponseEntity<ChannelDTO> updateChannelPhoto(@PathVariable String channelId,
                                                          @RequestParam("photo") MultipartFile photo) {
         return ResponseEntity.ok(channelService.updateChannelPhoto(channelId, photo));
     }
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/{channelId}/banner")
-    public ResponseEntity<ChannelDTO> updateChannelBanner(@PathVariable UUID channelId,
+    public ResponseEntity<ChannelDTO> updateChannelBanner(@PathVariable String channelId,
                                                           @RequestParam("banner") MultipartFile banner) {
         return ResponseEntity.ok(channelService.updateChannelBanner(channelId, banner));
     }
@@ -58,13 +58,13 @@ public class ChannelController {
     }
 
     @GetMapping("/{channelId}")
-    public ResponseEntity<ChannelDTO> getChannelById(@PathVariable UUID channelId) {
+    public ResponseEntity<ChannelDTO> getChannelById(@PathVariable String channelId) {
         return ResponseEntity.ok(channelService.getChannelById(channelId));
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/{channelId}/status")
-    public ResponseEntity<ChannelDTO> changeChannelStatus(@PathVariable UUID channelId,
+    public ResponseEntity<ChannelDTO> changeChannelStatus(@PathVariable String channelId,
                                                           @RequestParam ChannelStatus status) {
         return ResponseEntity.ok(channelService.changeChannelStatus(channelId, status));
     }

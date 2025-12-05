@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ChannelService {
@@ -46,7 +45,7 @@ public class ChannelService {
         return toDTO(channel);
     }
 
-    public ChannelDTO updateChannel(UUID channelId, UpdateChannelDTO dto) {
+    public ChannelDTO updateChannel(String channelId, UpdateChannelDTO dto) {
         Integer currentUserId = SpringSecurityUtil.getCurrentUserId();
         ChannelEntity entity = getChannelEntity(channelId);
 
@@ -60,7 +59,7 @@ public class ChannelService {
         throw new AppAccessDeniedException("You are not allowed to update this channel");
     }
 
-    public ChannelDTO updateChannelPhoto(UUID channelId, MultipartFile photo) {
+    public ChannelDTO updateChannelPhoto(String channelId, MultipartFile photo) {
         Integer currentUserId = SpringSecurityUtil.getCurrentUserId();
         ChannelEntity entity = getChannelEntity(channelId);
 
@@ -79,7 +78,7 @@ public class ChannelService {
     }
     
     // 4. Update Channel banner (USER and OWNER)
-    public ChannelDTO updateChannelBanner(UUID channelId, MultipartFile banner) {
+    public ChannelDTO updateChannelBanner(String channelId, MultipartFile banner) {
         Integer currentUserId = SpringSecurityUtil.getCurrentUserId();
         ChannelEntity entity = getChannelEntity(channelId);
 
@@ -110,12 +109,12 @@ public class ChannelService {
         return new PageImpl<>(dtoList, pageable, totalElements);
     }
 
-    public ChannelDTO getChannelById(UUID channelId) {
+    public ChannelDTO getChannelById(String channelId) {
         ChannelEntity entity = getChannelEntity(channelId);
         return toDTO(entity);
     }
 
-    public ChannelDTO changeChannelStatus(UUID channelId, ChannelStatus status) {
+    public ChannelDTO changeChannelStatus(String channelId, ChannelStatus status) {
         Integer currentUserId = SpringSecurityUtil.getCurrentUserId();
         ChannelEntity entity = getChannelEntity(channelId);
 
@@ -158,7 +157,7 @@ public class ChannelService {
         return dto;
     }
 
-    private ChannelEntity getChannelEntity(UUID channelId) {
+    private ChannelEntity getChannelEntity(String channelId) {
         Optional<ChannelEntity> optional = channelRepository.findByIdAndVisibleTrue(channelId);
         if (optional.isPresent()) {
             return optional.get();

@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,7 +14,7 @@ import java.util.UUID;
 public class ChannelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private String id;
     
     @Column(name = "name")
     private String name;
@@ -53,4 +52,7 @@ public class ChannelEntity {
     
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
+
+    @Column(name = "video_count")
+    private Integer videoCount = 0;
 }

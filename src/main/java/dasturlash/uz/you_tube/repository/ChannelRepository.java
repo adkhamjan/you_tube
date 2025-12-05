@@ -8,15 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface ChannelRepository extends CrudRepository<ChannelEntity, UUID> {
+public interface ChannelRepository extends CrudRepository<ChannelEntity, String> {
     Page<ChannelEntity> findAllByOrderByCreatedDateDesc(Pageable pageable);
 
     List<ChannelEntity> findByProfileIdAndVisibleTrueOrderByCreatedDateDesc(Integer profileId);
 
     boolean existsByName(String name);
 
-    Optional<ChannelEntity> findByIdAndVisibleTrue(UUID channelId);
+    Optional<ChannelEntity> findByIdAndVisibleTrue(String channelId);
 }

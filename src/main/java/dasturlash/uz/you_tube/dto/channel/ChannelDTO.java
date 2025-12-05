@@ -13,7 +13,7 @@ import java.util.UUID;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChannelDTO {
-    private UUID id;
+    private String id;
     private String name;
     private AttachDTO attach;
     private String description;
