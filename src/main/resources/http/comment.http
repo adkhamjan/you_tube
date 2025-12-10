@@ -1,0 +1,58 @@
+###############################
+### 1. CREATE COMMENT (USER)
+###############################
+POST http://localhost:8080/api/v1/comment
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "videoId": "8a8f2e12-34ab-45cd-b5f1-123456789abc",
+  "content": "Ajoyib video ekan!"
+}
+
+###############################
+### 2. UPDATE COMMENT (USER)
+###############################
+PUT http://localhost:8080/api/v1/comment/5
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "videoId": "8a8f2e12-34ab-45cd-b5f1-123456789abc",
+  "content": "Tahrirlangan fikrim."
+}
+
+###############################
+### 3. DELETE COMMENT (USER or ADMIN)
+###############################
+DELETE http://localhost:8080/api/v1/comment/5
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+###############################
+### 4. COMMENT PAGINATION (ADMIN)
+###############################
+GET http://localhost:8080/api/v1/comment/pagination?page=1&size=10
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+###############################
+### 5. GET COMMENT LIST BY PROFILE ID (USER)
+###############################
+GET http://localhost:8080/api/v1/comment/profile/7
+Authorization: Bearer {{USER_TOKEN}}
+
+###############################
+### 6. GET COMMENT LIST OF LOGGED-IN USER
+###############################
+GET http://localhost:8080/api/v1/comment/owner
+Authorization: Bearer {{USER_TOKEN}}
+
+###############################
+### 7. GET COMMENT LIST BY VIDEO ID
+###############################
+GET http://localhost:8080/api/v1/comment/video/8a8f2e12-34ab-45cd-b5f1-123456789abc
+
+###############################
+### 8. GET REPLIES OF A COMMENT
+###############################
+POST http://localhost:8080/api/v1/comment/reply/5
+Authorization: Bearer {{USER_TOKEN}}
