@@ -1,6 +1,7 @@
 package dasturlash.uz.you_tube.controller;
 
 import dasturlash.uz.you_tube.dto.profile.*;
+import dasturlash.uz.you_tube.enums.AppLanguage;
 import dasturlash.uz.you_tube.service.ProfileService;
 import dasturlash.uz.you_tube.util.SpringSecurityUtil;
 import jakarta.validation.Valid;
@@ -23,9 +24,10 @@ public class ProfileController {
     }
     
     @PutMapping("/change-password")
-    public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePasswordDTO dto) {
+    public ResponseEntity<String> changePassword(@RequestBody @Valid ChangePasswordDTO dto,
+                                                 @RequestHeader(value = "Accept-Language", defaultValue = "UZ") AppLanguage lang) {
         Integer profileId = SpringSecurityUtil.getCurrentUserId();
-        return ResponseEntity.ok(profileService.changePassword(profileId, dto));
+        return ResponseEntity.ok(profileService.changePassword(profileId, dto, lang));
     }
     
     @PutMapping("/update-email")

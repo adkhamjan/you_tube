@@ -3,6 +3,7 @@ package dasturlash.uz.you_tube.service;
 import dasturlash.uz.you_tube.dto.AttachDTO;
 import dasturlash.uz.you_tube.dto.profile.*;
 import dasturlash.uz.you_tube.entity.ProfileEntity;
+import dasturlash.uz.you_tube.enums.AppLanguage;
 import dasturlash.uz.you_tube.enums.ProfileStatus;
 import dasturlash.uz.you_tube.exp.AppBadRequestException;
 import dasturlash.uz.you_tube.repository.ProfileRepository;
@@ -24,6 +25,8 @@ public class ProfileService {
     BCryptPasswordEncoder  bCryptPasswordEncoder;
     @Autowired
     ProfileRoleService profileRoleService;
+    @Autowired
+    ResourceBundleService resourceBundle;
 
     public ProfileDTO create(CreateProfileDTO profile) {
         // checking
@@ -45,10 +48,10 @@ public class ProfileService {
         return toDto(entity);
     }
 
-    public String changePassword(Integer profileId, ChangePasswordDTO dto) {
+    public String changePassword(Integer profileId, ChangePasswordDTO dto, AppLanguage lang) {
         Optional<ProfileEntity> optional = profileRepository.findByIdAndVisibleTrue(profileId);
         if (optional.isEmpty()) {
-            throw new AppBadRequestException("User not found");
+            throw new AppBadRequestException(resourceBundle.getMessage("user.not.found", lang));
         }
         ProfileEntity entity = optional.get();
 

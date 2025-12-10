@@ -69,4 +69,7 @@ public class VideoEntity {
     private Long likeCount = 0L;
     @Column(name = "dislike_count")
     private Long dislikeCount = 0L;
+
+    @Column(name = "visible")
+    private Boolean visible = Boolean.TRUE;
 }

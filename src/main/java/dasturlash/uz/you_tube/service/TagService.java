@@ -29,16 +29,11 @@ public class TagService {
     }
 
     public TagDTO update(Integer id, TagDTO tagDTO) {
-        Optional<TagEntity> optional = tagRepository.findByIdAndVisibleTrue(id);
+        TagEntity tag = getTagById(id);
 
-        if (optional.isEmpty()) {
-            throw new AppBadRequestException("TagEntity with this id doesn't exist");
-        }
         if (tagRepository.existsByNameAndVisibleTrue(tagDTO.getName())) {
             throw new AppBadRequestException("TagEntity with this name already exists");
         }
-
-        TagEntity tag = optional.get();
         tag.setName(tagDTO.getName());
 
         tagRepository.save(tag);
@@ -56,6 +51,13 @@ public class TagService {
         return tagDTOs;
     }
 
+    public TagEntity getTagById(Integer id) {
+        Optional<TagEntity> optional = tagRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new AppBadRequestException("TagEntity with this id doesn't exist");
+        }
+        return optional.get();
+    }
     private TagDTO convertToDTO(TagEntity tag) {
         TagDTO dto = new TagDTO();
         dto.setId(tag.getId());

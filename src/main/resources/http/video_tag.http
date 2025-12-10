@@ -1,0 +1,20 @@
+### 1. ADD TAG TO VIDEO
+POST http://localhost:8080/api/v1/video-tag/add
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NTM2MDU2OSwiZXhwIjoxNzY1NzkyNTY5fQ.lrNvBqg2otfbd4vg0M5E1dTH6JMG9RwFbnSLZcaNmHKlUVqvMsC8-_RSpe8duIjm-i8onHbHY_zTArhjIFqnHg
+
+{
+  "videoId": "8a8f2e12-34ab-45cd-b5f1-123456789abc",
+  "tagId": 3
+}
+
+
+### 2. DELETE TAG FROM VIDEO
+DELETE http://localhost:8080/api/v1/video-tag?videoId=8a8f2e12-34ab-45cd-b5f1-123456789abc&tagId=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjpbIlJPTEVfVVNFUiJdLCJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTc2NTM2MDU2OSwiZXhwIjoxNzY1NzkyNTY5fQ.lrNvBqg2otfbd4vg0M5E1dTH6JMG9RwFbnSLZcaNmHKlUVqvMsC8-_RSpe8duIjm-i8onHbHY_zTArhjIFqnHg
+
+
+
+### 3. GET TAG LIST BY VIDEO ID
+GET http://localhost:8080/api/v1/video-tag/8a8f2e12-34ab-45cd-b5f1-123456789abc
+Accept: application/json

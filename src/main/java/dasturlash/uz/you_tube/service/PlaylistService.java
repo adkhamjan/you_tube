@@ -5,7 +5,6 @@ import dasturlash.uz.you_tube.dto.playlist.*;
 import dasturlash.uz.you_tube.dto.profile.ProfileDTO;
 import dasturlash.uz.you_tube.entity.PlaylistEntity;
 import dasturlash.uz.you_tube.enums.PlaylistStatus;
-import dasturlash.uz.you_tube.enums.ProfileRole;
 import dasturlash.uz.you_tube.exp.AppAccessDeniedException;
 import dasturlash.uz.you_tube.exp.AppBadRequestException;
 import dasturlash.uz.you_tube.mapper.PlaylistDetailMapper;
