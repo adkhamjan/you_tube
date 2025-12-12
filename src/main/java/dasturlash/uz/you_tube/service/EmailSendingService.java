@@ -44,6 +44,15 @@ public class EmailSendingService {
         sendSimpleMessage(toAccount, "Complete registration", body);
     }
 
+    public void sendUpdateEmail(String toAccount) {
+        Integer code = RandomUtil.fiveDigit();
+        String body = "You tube dan - gmail ni o'zgartirish uchun tasdiqlash kodi: " + code; // test message
+        // ...
+        smsHistoryService.save(toAccount, body, String.valueOf(code));
+        // ...
+        sendSimpleMessage(toAccount, "Complete update", body);
+    }
+
     public void sendRegistrationEmail2(String toAccount, String name) {
         Integer smsCode = RandomUtil.fiveDigit();
         String body = "<!DOCTYPE html>\n" +

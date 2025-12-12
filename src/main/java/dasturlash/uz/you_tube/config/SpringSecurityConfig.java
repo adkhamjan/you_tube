@@ -28,7 +28,16 @@ public class SpringSecurityConfig {
 
     public static final String[] AUTH_WHITELIST = {
             "/api/v1/auth/**",
-            "/api/v1/attach/**"
+            "/api/v1/attach/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html",
+            "/v3/api-docs/**",
+            "/v3/api-docs.yaml",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/webjars/**",
+            "/api-docs/**"
     };
 
     @Bean

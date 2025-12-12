@@ -157,7 +157,7 @@ public class ChannelService {
         return dto;
     }
 
-    private ChannelEntity getChannelEntity(String channelId) {
+    public ChannelEntity getChannelEntity(String channelId) {
         Optional<ChannelEntity> optional = channelRepository.findByIdAndVisibleTrue(channelId);
         if (optional.isPresent()) {
             return optional.get();

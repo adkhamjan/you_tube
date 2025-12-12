@@ -40,7 +40,7 @@ public class AuthService {
                 profileRoleService.deleteRolesByProfileId(existsProfile.getId());
                 profileRepository.deleteById(existsProfile.getId()); // delete
             } else {
-                throw new AppBadRequestException("Username already exists");
+                throw new AppBadRequestException("Email already exists");
             }
         }
         // create profile

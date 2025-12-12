@@ -9,6 +9,7 @@ import dasturlash.uz.you_tube.exp.AppBadRequestException;
 import dasturlash.uz.you_tube.repository.ProfileRepository;
 import dasturlash.uz.you_tube.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +23,14 @@ public class ProfileService {
     @Autowired
     private AttachService attachService;
     @Autowired
-    BCryptPasswordEncoder  bCryptPasswordEncoder;
+    private BCryptPasswordEncoder  bCryptPasswordEncoder;
     @Autowired
-    ProfileRoleService profileRoleService;
+    private ProfileRoleService profileRoleService;
+    @Lazy
     @Autowired
-    ResourceBundleService resourceBundle;
+    private EmailSendingService emailSendingService;
+    @Autowired
+    private ResourceBundleService resourceBundle;
 
     public ProfileDTO create(CreateProfileDTO profile) {
         // checking
@@ -68,17 +72,33 @@ public class ProfileService {
     }
 
     public String updateEmail(Integer profileId, UpdateEmailDTO dto) {
-        if (profileRepository.findByEmailAndVisibleTrue(dto.getEmail()).isPresent()) {
-            throw new AppBadRequestException("Email already exists");
+        Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(dto.getEmail());
+        if (optional.isPresent()) {
+            ProfileEntity existsProfile = optional.get();
+            if (existsProfile.getStatus().equals(ProfileStatus.NOT_ACTIVE)) {
+                profileRoleService.deleteRolesByProfileId(existsProfile.getId());
+                profileRepository.deleteById(existsProfile.getId());
+            } else {
+                throw new AppBadRequestException("Email already exists");
+            }
         }
 
-        int result = profileRepository.updateEmail(profileId, dto.getEmail());
-        if (result == 0) {
-            throw new AppBadRequestException("Email update failed");
-        }
+        new Thread(() -> emailSendingService.sendUpdateEmail(dto.getEmail())).start();
 
         return "Email updated successfully. Please verify your email.";
     }
+
+//    public String updateVerificationByEmail(Integer code) {
+//        Integer profileId = SpringSecurityUtil.getCurrentUserId();
+//        ProfileEntity profile = get(profileId);
+//        JwtDTO jwtDTO = JwtUtil.decode(jwtToken);
+//        Optional<ProfileEntity> optional = getProfileById(Integer.parseInt(jwtDTO.getUsername()));
+//        if (optional.isPresent()) {
+//            profileService.setStatusByUsername(ProfileStatus.ACTIVE, optional.get().getEmail());
+//            return "Verification Success!";
+//        }
+//        throw new AppBadRequestException("Wrong sms code");
+//    }
 
     public String updateDetail(Integer profileId, UpdateProfileDetailDTO dto) {
         int result = profileRepository.updateDetail(profileId, dto.getName(), dto.getSurname());
